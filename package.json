@@ -1,0 +1,21 @@
+{
+  "name": "inminds",
+  "version": "1.0.0",
+  "description": "rest api for inminds application",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "inminds.",
+    "note",
+    "app",
+    "reminder"
+  ],
+  "author": "ridho tamma",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
