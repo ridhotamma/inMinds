@@ -10,6 +10,10 @@
   animation: armSwipe 5s 1s infinite ease-in-out;
   transform-origin: left top;
 }
+
+.PrivateTabIndicator-colorSecondary-9 {
+  background-color: rgb(44, 44, 236) !important;
+}
 @keyframes armSwipe {
   0% {
     transform: rotate(-10deg);

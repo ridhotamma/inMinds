@@ -3,21 +3,6 @@ import React from "react";
 import Astronaut from "./Astronaut";
 
 const useStyles = makeStyles((theme) => ({
-  item: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-  },
-
-  left: {
-    backgroundColor: theme.palette.primary.dark,
-    flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
-    },
-  },
-
   title: {
     fontFamily: "'Luckiest Guy', cursive",
     fontWeight: 500,

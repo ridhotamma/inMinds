@@ -8,10 +8,15 @@ import {
   makeStyles,
   TextField,
   Typography,
+  Tab,
 } from "@material-ui/core";
+import TabContext from "@material-ui/lab/TabContext";
+import TabList from "@material-ui/lab/TabList";
+import TabPanel from "@material-ui/lab/TabPanel";
 import Astronaut from "../components/Astronaut";
 import LoginForm from "../components/LoginForm";
 import LeftSection from "../components/LeftSection";
+import RegisterForm from "../components/RegisterForm";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -28,27 +33,18 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
-
-  title: {
-    fontFamily: "'Luckiest Guy', cursive",
-    fontWeight: 500,
-    color: "white",
-  },
-
-  subtitle: {
-    fontFamily: "'Asap Condensed', sans-serif",
-    fontWeight: 500,
-    fontStyle: "italic",
-    color: "white",
-  },
-
-  form: {
-    marginBottom: theme.spacing(2),
+  right: {
+    flexDirection: "column",
   },
 }));
 
 const LandingPage = () => {
   const classes = useStyles();
+  const [value, setValue] = React.useState("1");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <React.Fragment>
       <Grid container className={classes.container}>
@@ -68,7 +64,20 @@ const LandingPage = () => {
           md={4}
           sm={6}
         >
-          <LoginForm />
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList onChange={handleChange} aria-label="Login and Register">
+                <Tab label="Login" value="1" />
+                <Tab label="Register" value="2" />
+              </TabList>
+            </Box>
+            <TabPanel value="1">
+              <LoginForm />
+            </TabPanel>
+            <TabPanel value="2">
+              <RegisterForm />
+            </TabPanel>
+          </TabContext>
         </Grid>
       </Grid>
     </React.Fragment>
