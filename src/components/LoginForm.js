@@ -30,6 +30,8 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("data submitted");
+
+    window.location.href = "http://localhost:3000/dashboard";
   };
 
   const onChangeEmail = (e) => {
