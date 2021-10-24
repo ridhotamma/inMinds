@@ -1,22 +1,13 @@
 import React from "react";
 import "../App.css";
-import {
-  Button,
-  Box,
-  Container,
-  Grid,
-  makeStyles,
-  TextField,
-  Typography,
-  Tab,
-} from "@material-ui/core";
+import { Box, Grid, makeStyles, Tab } from "@material-ui/core";
 import TabContext from "@material-ui/lab/TabContext";
 import TabList from "@material-ui/lab/TabList";
 import TabPanel from "@material-ui/lab/TabPanel";
-import Astronaut from "../components/Astronaut";
 import LoginForm from "../components/LoginForm";
 import LeftSection from "../components/LeftSection";
 import RegisterForm from "../components/RegisterForm";
+import LoginGoogleButton from "../components/LoginGoogleButton";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -73,9 +64,11 @@ const LandingPage = () => {
             </Box>
             <TabPanel value="1">
               <LoginForm />
+              <LoginGoogleButton />
             </TabPanel>
             <TabPanel value="2">
               <RegisterForm />
+              <LoginGoogleButton />
             </TabPanel>
           </TabContext>
         </Grid>

@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import LoginGoogleButton from "./LoginGoogleButton";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -28,21 +29,21 @@ const RegisterForm = () => {
             create new account
           </Typography>
           <TextField
-            id="outlined-basic"
+            id="outlined-basic-username"
             label="username"
             variant="outlined"
             style={{ width: "100%" }}
             className={classes.form}
           />
           <TextField
-            id="outlined-basic"
+            id="outlined-basic-email"
             label="Your email"
             variant="outlined"
             style={{ width: "100%" }}
             className={classes.form}
           />
           <TextField
-            id="outlined-basic"
+            id="outlined-basic-password"
             label="password"
             type="password"
             variant="outlined"
@@ -50,7 +51,7 @@ const RegisterForm = () => {
             className={classes.form}
           />
           <TextField
-            id="outlined-basic"
+            id="outlined-basic-cpassword"
             label="confirm password"
             type="password"
             variant="outlined"
