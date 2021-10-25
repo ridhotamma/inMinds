@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const notes = require("./data/notes");
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("hello world from express");
