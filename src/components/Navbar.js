@@ -1,12 +1,11 @@
 import {
   AppBar,
-  Button,
   Container,
   makeStyles,
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import CreateIcon from "@material-ui/icons/Create";
+import MenuDropdown from "./MenuDropdown";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,12 +19,13 @@ const Navbar = () => {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <AppBar color="primary" position="static">
+      <AppBar color="primary" position="sticky">
         <Container>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
               InMinds
             </Typography>
+            <MenuDropdown />
           </Toolbar>
         </Container>
       </AppBar>

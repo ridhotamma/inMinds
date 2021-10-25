@@ -1,15 +1,8 @@
-import {
-  Box,
-  Container,
-  IconButton,
-  makeStyles,
-  Paper,
-} from "@material-ui/core";
+import { Container, IconButton, makeStyles } from "@material-ui/core";
 import React from "react";
 import Navbar from "../components/Navbar";
 import NoteGrid from "../components/NoteGrid";
-import AddIcon from "@material-ui/icons/Create";
-
+import AddButton from "../components/AddButton";
 const useStyles = makeStyles((theme) => ({
   add: {
     color: "white",
@@ -25,16 +18,14 @@ const useStyles = makeStyles((theme) => ({
 
   container: {},
 }));
-const Dashboard = () => {
+const Dashboard = ({ notes }) => {
   const classes = useStyles();
   return (
     <React.Fragment>
       <Navbar />
       <Container className={classes.container}>
-        <NoteGrid />
-        <IconButton style={{ backgroundColor: "red" }} className={classes.icon}>
-          <AddIcon className={classes.add} />
-        </IconButton>
+        <NoteGrid notes={notes} />
+        <AddButton />
       </Container>
     </React.Fragment>
   );
