@@ -1,9 +1,14 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const notes = require("./data/notes");
+const dotenv = require("dotenv");
+const connectDB = require("./config/database");
 
+const app = express();
+dotenv.config();
 app.use(cors());
+
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("hello world from express");
@@ -18,5 +23,5 @@ app.get("/api/note/:id", (req, res) => {
   res.json(selectedNote);
 });
 
-const port = 5500 || process.env.PORT;
+const port = process.env.PORT || 5500;
 app.listen(port, () => console.log("listening to the port " + port));
