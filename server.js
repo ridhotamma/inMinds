@@ -1,27 +1,51 @@
-const express = require("express");
-const cors = require("cors");
-const notes = require("./data/notes");
-const dotenv = require("dotenv");
-const connectDB = require("./config/database");
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/database.js";
+import colors from "colors";
+import cors from "cors";
+import path from "path";
 
-const app = express();
+import noteRoutes from "./routes/note.route.js";
+import userRoutes from "./routes/user.route.js";
+import { errorHandler, notFound } from "./middlewares/error.middleware.js";
+
 dotenv.config();
-app.use(cors());
-
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send("hello world from express");
-});
+const app = express(); // main thing
+app.use(cors());
 
-app.get("/api/notes", (req, res) => {
-  res.json(notes);
-});
+app.use(express.json()); // to accept json data
 
-app.get("/api/note/:id", (req, res) => {
-  const selectedNote = notes.find((note) => note._id === req.params.id);
-  res.json(selectedNote);
-});
+app.use("/api/notes", noteRoutes);
+app.use("/api/users", userRoutes);
 
-const port = process.env.PORT || 5500;
-app.listen(port, () => console.log("listening to the port " + port));
+// --------------------------deployment------------------------------
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+// --------------------------deployment------------------------------
+
+// Error Handling middlewares
+app.use(notFound);
+app.use(errorHandler);
+
+const PORT = process.env.PORT;
+
+app.listen(
+  PORT,
+  console.log(
+    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}..`.yellow
+      .bold
+  )
+);

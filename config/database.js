@@ -1,25 +1,20 @@
-const mongoose = require("mongoose");
-
-const uri = process.env.MONGO_URI_LOCAL;
+//Connection file to mongo db
+import mongoose from "mongoose";
+import colors from "colors";
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI_LOCAL, {
-      useCreateIndex: true,
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
       useUnifiedTopology: true,
-      useFindAndModify: true,
       useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: true,
     });
-
-    const database = await conn.connection.collection("notes");
-    const note = await database.findOne({
-      title: "travelling around the world",
-    });
-    console.log(note);
-    console.log(`database connected succesfully at ${conn.connection.host}`);
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
   } catch (error) {
-    console.log(error);
+    console.error(`Error: ${error.message}`.red.bold);
+    process.exit();
   }
 };
 
-module.exports = connectDB;
+export default connectDB;
